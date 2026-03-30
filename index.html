@@ -12,6 +12,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230C0F0A'/><text x='16' y='22' font-family='monospace' font-size='16' font-weight='bold' fill='%23CCFF00' text-anchor='middle'>IOT</text></svg>">
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress"></div>
+
   <!-- SKIP LINK -->
   <a href="#main-content" class="sr-only">Skip to main content</a>
 
@@ -101,6 +103,24 @@
           <p class="body-text">The market prices Samsara as a fleet-tracking hardware vendor. It's actually building the <strong class="text-accent">Physical Operations Cloud</strong> — an AI-powered software platform that digitizes the $100B+ world of physical operations. With 8 products, 98% subscription revenue, 76.7% gross margins, and a data flywheel processing 25+ trillion data points annually, this is a platform story hiding in plain sight.</p>
           <p class="body-text">At 9.6x EV/Sales — its all-time low — Samsara trades at a fraction of comparable 30% growth software peers. The stock has compressed 45% from peak multiples despite accelerating fundamentals, GAAP profitability, and 11 consecutive earnings beats.</p>
           <p class="body-text">Institutional conviction is growing: Baillie Gifford holds $1.69B (+15% QoQ), Vanguard $1.17B (+11.5%), and BlackRock $888M (+13.6%). Goldman Sachs initiated coverage with a $48.93 fair value — 60% above current price.</p>
+          <div class="thesis-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">📊</span>
+              <span class="highlight-text">Revenue CAGR of 39% over 4 years ($428M → $1,619M)</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🏆</span>
+              <span class="highlight-text">IDC-verified 815% customer ROI — $2.02M annual benefits per organization</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🔒</span>
+              <span class="highlight-text">98% subscription revenue with NRR above 115%</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🎯</span>
+              <span class="highlight-text">12,000+ Core Customers, 3,194 above $100K ARR</span>
+            </div>
+          </div>
         </div>
         <div class="col-kpis">
           <div class="kpi-card" data-animate>
@@ -219,6 +239,40 @@
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <h3 class="subsection-title">The Revenue Journey</h3>
+        <div class="revenue-journey">
+          <div class="journey-step" data-animate>
+            <span class="journey-year">FY22</span>
+            <span class="journey-amount">$428M</span>
+            <div class="journey-bar" style="--bar-width: 26%"></div>
+          </div>
+          <div class="journey-step" data-animate>
+            <span class="journey-year">FY23</span>
+            <span class="journey-amount">$653M</span>
+            <div class="journey-bar" style="--bar-width: 40%"></div>
+          </div>
+          <div class="journey-step" data-animate>
+            <span class="journey-year">FY24</span>
+            <span class="journey-amount">$937M</span>
+            <div class="journey-bar" style="--bar-width: 58%"></div>
+          </div>
+          <div class="journey-step" data-animate>
+            <span class="journey-year">FY25</span>
+            <span class="journey-amount">$1,249M</span>
+            <div class="journey-bar" style="--bar-width: 77%"></div>
+          </div>
+          <div class="journey-step" data-animate>
+            <span class="journey-year">FY26</span>
+            <span class="journey-amount text-accent">$1,619M</span>
+            <div class="journey-bar journey-bar-active" style="--bar-width: 100%"></div>
+          </div>
+          <div class="journey-step journey-step-est" data-animate>
+            <span class="journey-year">FY27E</span>
+            <span class="journey-amount">$1,971M</span>
+            <div class="journey-bar journey-bar-est" style="--bar-width: 100%"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -711,6 +765,18 @@
       </div>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged chart view">
+    <button class="lightbox-close" aria-label="Close enlarged view">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
 
   <script src="./app.js"></script>
 </body>
