@@ -248,7 +248,55 @@
   }
 
   // ============================================================
-  // 10. EXPANDABLE RISK CARDS
+  // 10. TEXT REVEAL ANIMATIONS
+  // ============================================================
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  // Section titles: clip-path reveal
+  document.querySelectorAll('.section-title').forEach(el => revealObserver.observe(el));
+
+  // Section labels: slide-in from left
+  document.querySelectorAll('.section-label').forEach(el => revealObserver.observe(el));
+
+  // Section intros: fade up
+  document.querySelectorAll('.section-intro').forEach(el => revealObserver.observe(el));
+
+  // Scenario cards: staggered entrance
+  document.querySelectorAll('.scenario-card').forEach(el => revealObserver.observe(el));
+
+  // Holder cards: trigger bar fill
+  document.querySelectorAll('.holder-card').forEach(card => {
+    const bar = card.querySelector('.holder-bar');
+    if (bar) card.style.setProperty('--bar-w', bar.style.width);
+    revealObserver.observe(card);
+  });
+
+  // Journey steps: trigger bar fill
+  document.querySelectorAll('.journey-step').forEach(el => revealObserver.observe(el));
+
+  // KPI glow flash when counter finishes
+  const origAnimateCounter = animateCounter;
+  // Patch: add glow flash at end of count
+  document.querySelectorAll('.kpi-value[data-count]').forEach(el => {
+    const obs = new MutationObserver(() => {
+      if (el.dataset.counted === 'true') {
+        el.classList.add('flash');
+        setTimeout(() => el.classList.remove('flash'), 600);
+        obs.disconnect();
+      }
+    });
+    obs.observe(el, { attributes: true });
+  });
+
+  // ============================================================
+  // 11. EXPANDABLE RISK CARDS
   // ============================================================
   document.querySelectorAll('.risk-card').forEach(card => {
     card.addEventListener('click', () => {

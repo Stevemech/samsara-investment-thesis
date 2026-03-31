@@ -290,6 +290,9 @@ a, button, [role="button"], input, textarea, select {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--space-6);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
 .hero-headline {
@@ -299,14 +302,40 @@ a, button, [role="button"], input, textarea, select {
   line-height: 1.05;
   color: var(--color-text);
   margin-bottom: var(--space-6);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
 }
 
 .hero-sub {
   font-size: var(--text-lg);
   color: var(--color-text-muted);
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-4);
   max-width: 100%;
   overflow-wrap: break-word;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+}
+
+.thesis-cta {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.15s forwards;
+}
+
+.hero-ticker {
+  opacity: 0;
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards;
+}
+
+.scroll-indicator {
+  opacity: 0;
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+}
+
+@keyframes heroFadeUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 640px) {
@@ -2046,4 +2075,197 @@ a, button, [role="button"], input, textarea, select {
 .reader-download:hover {
   box-shadow: 0 0 30px rgba(204, 255, 0, 0.3);
   transform: translateY(-2px);
+}
+
+/* ============================================================
+   PIZAZZ — Advanced Text & Element Animations
+   ============================================================ */
+
+/* --- Section title clip-reveal on scroll --- */
+.section-title {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-title.revealed {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* --- Section label slide-in from left --- */
+.section-label {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-label.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Accent text shimmer on hover --- */
+.text-accent {
+  position: relative;
+  background: linear-gradient(90deg, var(--color-accent) 0%, #EEFF88 50%, var(--color-accent) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* --- KPI value count-up glow flash --- */
+.kpi-value {
+  transition: text-shadow 0.4s ease;
+}
+
+.kpi-value.flash {
+  text-shadow: 0 0 20px rgba(204, 255, 0, 0.6), 0 0 40px rgba(204, 255, 0, 0.2);
+}
+
+/* --- Scenario cards entrance stagger --- */
+.scenario-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scenario-card.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scenario-card:nth-child(2) { transition-delay: 0.12s; }
+.scenario-card:nth-child(3) { transition-delay: 0.24s; }
+
+/* --- Conviction card pulse border --- */
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(204, 255, 0, 0.1), inset 0 0 15px rgba(204, 255, 0, 0.02); }
+  50% { box-shadow: 0 0 30px rgba(204, 255, 0, 0.2), inset 0 0 30px rgba(204, 255, 0, 0.04); }
+}
+
+.conviction-card {
+  animation: borderGlow 4s ease-in-out infinite;
+}
+
+/* --- Flywheel connector animated arrow --- */
+@keyframes arrowPulse {
+  0%, 100% { opacity: 0.6; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(4px); }
+}
+
+.flywheel-connector {
+  animation: arrowPulse 2s ease-in-out infinite;
+}
+
+/* --- Pricing arrow bounce --- */
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(6px); }
+}
+
+.pricing-arrow svg {
+  animation: arrowBounce 2.5s ease-in-out infinite;
+}
+
+@media (max-width: 640px) {
+  .pricing-arrow svg { animation-name: none; }
+}
+
+/* --- Catalyst number shimmer --- */
+.catalyst-number {
+  background: linear-gradient(135deg, var(--color-text-faint) 0%, var(--color-text-muted) 50%, var(--color-text-faint) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+/* --- Hero background subtle radial pulse --- */
+@keyframes heroPulse {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: heroPulse 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Table row highlight on hover --- */
+.data-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(204, 255, 0, 0.04);
+}
+
+/* --- Smooth body text reveal for section intros --- */
+.section-intro {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.section-intro.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Holder bar animated fill on scroll --- */
+.holder-bar {
+  width: 0;
+}
+
+.holder-card.revealed .holder-bar {
+  width: var(--bar-w, 100%);
+}
+
+/* --- Journey bar animated width on scroll --- */
+.journey-bar {
+  width: 0;
+}
+
+.journey-step.revealed .journey-bar {
+  width: var(--bar-width);
+}
+
+/* --- Respect reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-headline, .hero-sub, .thesis-cta,
+  .hero-ticker, .scroll-indicator {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .section-title, .section-label, .section-intro {
+    clip-path: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .text-accent {
+    animation: none !important;
+    -webkit-text-fill-color: var(--color-accent) !important;
+    background: none !important;
+  }
 }
