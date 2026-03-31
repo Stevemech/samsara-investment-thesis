@@ -320,8 +320,19 @@
   // Subsection titles: fade-slide
   document.querySelectorAll('.subsection-title').forEach(el => revealObserver.observe(el));
 
-  // Chart cards: staggered slide-up
-  document.querySelectorAll('.chart-card').forEach(el => revealObserver.observe(el));
+  // Chart cards: staggered slide-up (add class AFTER images loaded)
+  document.querySelectorAll('.chart-card').forEach(el => {
+    const img = el.querySelector('img');
+    function setupReveal() {
+      el.classList.add('will-reveal');
+      revealObserver.observe(el);
+    }
+    if (img && !img.complete) {
+      img.addEventListener('load', setupReveal, { once: true });
+    } else {
+      setupReveal();
+    }
+  });
 
   // KPI glow flash when counter finishes
   const origAnimateCounter = animateCounter;
@@ -463,27 +474,7 @@
   });
 
   // ============================================================
-  // 14C. TYPEWRITER EFFECT ON HERO SUBTITLE
-  // ============================================================
-  const heroSub = document.querySelector('.hero-sub');
-  if (heroSub) {
-    const originalHTML = heroSub.innerHTML;
-    // Type out just the text part after the animations complete
-    setTimeout(() => {
-      const priceSpan = heroSub.querySelector('.text-accent');
-      if (priceSpan) {
-        // Add blinking cursor after price
-        const cursor = document.createElement('span');
-        cursor.className = 'typing-cursor';
-        cursor.textContent = '|';
-        priceSpan.after(cursor);
-        setTimeout(() => cursor.remove(), 3000);
-      }
-    }, 2000);
-  }
-
-  // ============================================================
-  // 14D. SCROLL-TRIGGERED SECTION COUNTER
+  // 14C. SCROLL-TRIGGERED SECTION COUNTER
   // ============================================================
   let sectionIndex = 0;
   const sectionNames = ['Hero', 'Thesis', 'Financials', 'Management', 'Products', 'Tailwinds', 'Valuation', 'Catalysts', 'Risks', 'Conclusion', 'Paper'];

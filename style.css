@@ -244,19 +244,6 @@ a, button, [role="button"], input, textarea, select {
   .bg-particles { display: none; }
 }
 
-/* === TYPING CURSOR === */
-.typing-cursor {
-  color: var(--color-accent);
-  font-weight: 300;
-  animation: cursorBlink 0.8s step-end infinite;
-  margin-left: 2px;
-}
-
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 /* === SECTION COUNTER (fixed left) === */
 .section-counter {
   position: fixed;
@@ -2427,8 +2414,8 @@ a, button, [role="button"], input, textarea, select {
   transform: translateY(0);
 }
 
-/* --- Chart cards: slide up from bottom --- */
-.chart-card {
+/* --- Chart cards: slide up from bottom (only when JS-enhanced) --- */
+.chart-card.will-reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
@@ -2437,8 +2424,8 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .chart-card.revealed {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .chart-card:nth-child(2) { transition-delay: 0.1s; }
