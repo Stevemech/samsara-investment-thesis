@@ -281,6 +281,12 @@
   // Journey steps: trigger bar fill
   document.querySelectorAll('.journey-step').forEach(el => revealObserver.observe(el));
 
+  // Subsection titles: fade-slide
+  document.querySelectorAll('.subsection-title').forEach(el => revealObserver.observe(el));
+
+  // Chart cards: staggered slide-up
+  document.querySelectorAll('.chart-card').forEach(el => revealObserver.observe(el));
+
   // KPI glow flash when counter finishes
   const origAnimateCounter = animateCounter;
   // Patch: add glow flash at end of count

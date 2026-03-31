@@ -416,15 +416,16 @@ a, button, [role="button"], input, textarea, select {
   color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: clamp(2.2rem, 1rem + 4vw, 4.5rem);
   font-weight: 400;
   color: var(--color-text);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
+  line-height: 1.08;
 }
 
 .subsection-title {
@@ -2081,22 +2082,25 @@ a, button, [role="button"], input, textarea, select {
    PIZAZZ — Advanced Text & Element Animations
    ============================================================ */
 
-/* --- Section title clip-reveal on scroll --- */
+/* --- Section title reveal on scroll --- */
 .section-title {
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s,
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
 }
 
 .section-title.revealed {
-  clip-path: inset(0 0% 0 0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* --- Section label slide-in from left --- */
 .section-label {
   opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-16px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .section-label.revealed {
@@ -2222,9 +2226,9 @@ a, button, [role="button"], input, textarea, select {
 /* --- Smooth body text reveal for section intros --- */
 .section-intro {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+  transform: translateY(8px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s,
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
 }
 
 .section-intro.revealed {
@@ -2250,6 +2254,85 @@ a, button, [role="button"], input, textarea, select {
   width: var(--bar-width);
 }
 
+/* --- Subsection title fade-slide --- */
+.subsection-title {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subsection-title.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Chart cards: slide up from bottom --- */
+.chart-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color var(--transition-interactive);
+}
+
+.chart-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chart-card:nth-child(2) { transition-delay: 0.1s; }
+.chart-card:nth-child(3) { transition-delay: 0.2s; }
+
+/* --- Management card tilt on hover --- */
+.mgmt-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color var(--transition-interactive),
+              box-shadow var(--transition-interactive);
+}
+
+.mgmt-card:hover {
+  transform: translateY(-6px) rotate(-0.5deg);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  border-color: var(--color-accent);
+}
+
+/* --- Product card icon spin on hover --- */
+.product-card .product-icon svg {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-icon svg {
+  transform: rotate(8deg) scale(1.15);
+}
+
+/* --- Guidance banner shimmer border --- */
+@keyframes guidanceShimmer {
+  0% { border-color: var(--color-accent); }
+  50% { border-color: var(--color-teal); }
+  100% { border-color: var(--color-accent); }
+}
+
+.guidance-banner {
+  animation: guidanceShimmer 4s ease-in-out infinite;
+}
+
+/* --- Smooth number transition for KPI --- */
+.kpi-value {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* --- Callout card left-border glow --- */
+.callout-card {
+  transition: border-left-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.callout-card:hover {
+  border-left-color: var(--color-accent);
+  box-shadow: -4px 0 20px rgba(204, 255, 0, 0.08);
+}
+
 /* --- Respect reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
   .hero-eyebrow, .hero-headline, .hero-sub, .thesis-cta,
@@ -2258,10 +2341,12 @@ a, button, [role="button"], input, textarea, select {
     transform: none !important;
     animation: none !important;
   }
-  .section-title, .section-label, .section-intro {
+  .section-title, .section-label, .section-intro,
+  .scenario-card {
     clip-path: none !important;
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
   }
   .text-accent {
     animation: none !important;
