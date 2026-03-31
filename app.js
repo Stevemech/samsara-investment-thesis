@@ -386,4 +386,154 @@
   updateTicker();
   setInterval(updateTicker, 4000);
 
+  // ============================================================
+  // 14. BACKGROUND STOCK CHART (Canvas)
+  // ============================================================
+  const canvas = document.getElementById('bg-canvas');
+  if (canvas && window.innerWidth > 768) {
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    const chartPoints = [];
+    const totalPoints = 200;
+
+    // Generate a realistic stock chart path (upward trend with volatility)
+    function generateChart() {
+      chartPoints.length = 0;
+      let price = 15; // start low (IPO)
+      for (let i = 0; i < totalPoints; i++) {
+        const t = i / totalPoints;
+        // Trend: starts at 15, dips to 10, rallies to 45, pulls back to 31
+        const trend = 15 + t * 25 * Math.sin(t * Math.PI * 0.9);
+        const noise = (Math.random() - 0.5) * 3;
+        price = trend + noise;
+        chartPoints.push(price);
+      }
+    }
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    function drawChart() {
+      const scrollY = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPct = Math.min(scrollY / Math.max(docH, 1), 1);
+
+      // How many points to draw based on scroll
+      const visibleCount = Math.floor(scrollPct * totalPoints) + 10;
+
+      ctx.clearRect(0, 0, w, h);
+
+      if (chartPoints.length === 0) return;
+
+      const minP = Math.min(...chartPoints);
+      const maxP = Math.max(...chartPoints);
+      const rangeP = maxP - minP || 1;
+
+      // Draw the line
+      ctx.beginPath();
+      const drawCount = Math.min(visibleCount, totalPoints);
+      for (let i = 0; i < drawCount; i++) {
+        const x = (i / totalPoints) * w;
+        const y = h - ((chartPoints[i] - minP) / rangeP) * h * 0.6 - h * 0.2;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+
+      // Stroke the line
+      const grad = ctx.createLinearGradient(0, 0, w, 0);
+      grad.addColorStop(0, 'rgba(0, 212, 170, 0.6)');
+      grad.addColorStop(0.6, 'rgba(204, 255, 0, 0.5)');
+      grad.addColorStop(1, 'rgba(204, 255, 0, 0.3)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Fill area under the line
+      if (drawCount > 1) {
+        const lastX = ((drawCount - 1) / totalPoints) * w;
+        const lastY = h - ((chartPoints[drawCount - 1] - minP) / rangeP) * h * 0.6 - h * 0.2;
+        ctx.lineTo(lastX, h);
+        ctx.lineTo(0, h);
+        ctx.closePath();
+        const fillGrad = ctx.createLinearGradient(0, 0, 0, h);
+        fillGrad.addColorStop(0, 'rgba(204, 255, 0, 0.04)');
+        fillGrad.addColorStop(1, 'rgba(204, 255, 0, 0)');
+        ctx.fillStyle = fillGrad;
+        ctx.fill();
+      }
+
+      // Draw a small dot at the leading edge
+      if (drawCount > 1) {
+        const tipX = ((drawCount - 1) / totalPoints) * w;
+        const tipY = h - ((chartPoints[drawCount - 1] - minP) / rangeP) * h * 0.6 - h * 0.2;
+        ctx.beginPath();
+        ctx.arc(tipX, tipY, 3, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(204, 255, 0, 0.6)';
+        ctx.fill();
+
+        // Glow
+        ctx.beginPath();
+        ctx.arc(tipX, tipY, 8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(204, 255, 0, 0.1)';
+        ctx.fill();
+      }
+    }
+
+    generateChart();
+    resize();
+    drawChart();
+
+    window.addEventListener('resize', () => { resize(); drawChart(); });
+    window.addEventListener('scroll', drawChart, { passive: true });
+  }
+
+  // ============================================================
+  // 15. FLOATING EMOJI PARTICLES
+  // ============================================================
+  const particleContainer = document.getElementById('bg-particles');
+  if (particleContainer && window.innerWidth > 768) {
+    const emojis = ['📈', '💰', '🚀', '📊', '⚡', '🎯', '💎', '🔒', '🏆', '📡'];
+    let lastScroll = 0;
+    let particleCount = 0;
+    const maxParticles = 15;
+
+    function spawnParticle() {
+      if (particleCount >= maxParticles) return;
+      const el = document.createElement('span');
+      el.className = 'particle';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = (Math.random() * 90 + 5) + '%';
+      el.style.top = (Math.random() * 80 + 10) + '%';
+      el.style.fontSize = (12 + Math.random() * 8) + 'px';
+      el.style.animationDuration = (12 + Math.random() * 18) + 's';
+      particleContainer.appendChild(el);
+      particleCount++;
+      el.addEventListener('animationend', () => {
+        el.remove();
+        particleCount--;
+      });
+    }
+
+    // Spawn a few on load
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => spawnParticle(), i * 800);
+    }
+
+    // Spawn on scroll (throttled)
+    window.addEventListener('scroll', () => {
+      const diff = Math.abs(window.scrollY - lastScroll);
+      if (diff > 300) {
+        lastScroll = window.scrollY;
+        spawnParticle();
+      }
+    }, { passive: true });
+
+    // Also spawn periodically
+    setInterval(() => {
+      if (Math.random() < 0.3) spawnParticle();
+    }, 5000);
+  }
+
 })();
