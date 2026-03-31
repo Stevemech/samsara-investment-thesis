@@ -14,7 +14,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 6rem;
+}
+
+/* Smoother feel */
+body {
+  overscroll-behavior: none;
 }
 
 /* === DESIGN TOKENS === */
@@ -2353,4 +2358,110 @@ a, button, [role="button"], input, textarea, select {
     -webkit-text-fill-color: var(--color-accent) !important;
     background: none !important;
   }
+}
+
+/* === LIVE STOCK BAR === */
+.live-bar {
+  position: sticky;
+  top: 52px;
+  z-index: 95;
+  background: rgba(21, 26, 18, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #00D4AA;
+  animation: livePulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px #00D4AA; }
+  50% { opacity: 0.4; box-shadow: 0 0 8px #00D4AA; }
+}
+
+.live-label {
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+
+.live-price {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.live-change {
+  font-weight: 600;
+  color: #00D4AA;
+}
+
+.live-change.negative { color: #FF4D4D; }
+
+.live-sep {
+  color: var(--color-text-faint);
+  opacity: 0.3;
+}
+
+.live-stat {
+  color: var(--color-text-faint);
+  font-size: 12px;
+}
+
+.live-stat strong {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .live-bar { gap: 8px; padding: 6px 16px; font-size: 12px; }
+  .live-stat { display: none; }
+  .live-stat:nth-child(-n+7) { display: inline; }
+}
+
+/* --- Word-by-word reveal --- */
+.word-reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-title.revealed .word-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Thesis reader GitHub link --- */
+.reader-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  margin-left: 12px;
+  transition: all 0.3s var(--ease-out);
+}
+
+.reader-github:hover {
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
 }

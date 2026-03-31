@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Samsara (IOT) — Full Investment Thesis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #d4d4d4;
+      background: #0C0F0A;
+      padding: 0;
+    }
+    .thesis-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(12,15,10,0.9); backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1E2418;
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .thesis-nav a { color: #CCFF00; text-decoration: none; font-size: 14px; font-weight: 600; }
+    .thesis-nav span { color: #6B7280; font-size: 13px; }
+    .thesis-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 24px 120px;
+    }
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 1rem+4vw, 3.5rem); color: #f5f5f5; line-height: 1.1; margin: 0 0 16px; }
+    h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.5rem, 1rem+2vw, 2.2rem); color: #f5f5f5; margin: 56px 0 16px; padding-top: 32px; border-top: 1px solid #1E2418; }
+    h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 700; color: #CCFF00; margin: 32px 0 12px; }
+    h4 { font-size: 1rem; font-weight: 600; color: #e0e0e0; margin: 24px 0 8px; }
+    p { margin: 0 0 16px; max-width: 72ch; }
+    strong { color: #f5f5f5; }
+    a { color: #CCFF00; }
+    em { color: #9CA3AF; }
+    ul, ol { margin: 0 0 16px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+    th { text-align: left; padding: 10px 12px; background: #151A12; color: #9CA3AF; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 0.05em; border-bottom: 1px solid #1E2418; }
+    td { padding: 10px 12px; border-bottom: 1px solid #1E2418; color: #d4d4d4; }
+    tr:hover { background: rgba(204,255,0,0.03); }
+    blockquote { border-left: 3px solid #CCFF00; padding: 12px 20px; margin: 16px 0; background: rgba(204,255,0,0.04); border-radius: 0 8px 8px 0; }
+    blockquote p { margin: 0; color: #b0b0b0; }
+    code { background: #151A12; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; color: #CCFF00; }
+    img { max-width: 100%; border-radius: 8px; margin: 24px 0; border: 1px solid #1E2418; }
+    hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, #CCFF00, transparent); margin: 48px 0; opacity: 0.3; }
+    .thesis-hero { text-align: center; padding: 40px 0 32px; }
+    .thesis-hero p { color: #6B7280; font-size: 14px; max-width: 100%; }
+    ::selection { background: rgba(204,255,0,0.2); }
+  </style>
+</head>
+<body>
+  <nav class="thesis-nav">
+    <a href="./index.html">← Back to Website</a>
+    <span>Samsara (NYSE: IOT) Investment Thesis · March 2026</span>
+  </nav>
+  <div class="thesis-body" id="thesis-content">
+    <div class="thesis-hero">
+      <h1>Samsara (NYSE: IOT)</h1>
+      <p>The Most Mispriced Growth Platform in Software · An Institutional-Grade Investment Thesis</p>
+    </div>
+    <div id="markdown-content"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    fetch('./thesis.md')
+      .then(r => r.text())
+      .then(md => {
+        // Remove the first H1 line (we have our own hero)
+        const cleaned = md.replace(/^#\s+.+\n/, '');
+        document.getElementById('markdown-content').innerHTML = marked.parse(cleaned);
+        // Fix image paths
+        document.querySelectorAll('#markdown-content img').forEach(img => {
+          const src = img.getAttribute('src');
+          if (src && src.startsWith('./')) {
+            img.src = './assets/charts/' + src.replace('./', '');
+          }
+        });
+      });
+  </script>
+</body>
+</html>

@@ -168,18 +168,33 @@
   });
 
   // ============================================================
-  // 6. HERO PARALLAX (subtle)
+  // 6. HERO SCROLL EFFECTS (Vibor-inspired)
   // ============================================================
   const heroGrid = document.querySelector('.hero-bg-grid');
+  const heroHeadline = document.querySelector('.hero-headline');
+  const heroContent = document.querySelector('.hero-content');
 
-  if (heroGrid) {
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      if (scrollY < window.innerHeight) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const vh = window.innerHeight;
+    if (scrollY < vh) {
+      const progress = scrollY / vh;
+      // Scale headline up as you scroll (Vibor zoom effect)
+      if (heroHeadline) {
+        const scale = 1 + progress * 0.15;
+        heroHeadline.style.transform = `scale(${scale}) translateY(${-progress * 20}px)`;
+        heroHeadline.style.opacity = 1 - progress * 1.5;
+      }
+      // Fade out hero content
+      if (heroContent) {
+        heroContent.style.opacity = 1 - progress * 1.8;
+      }
+      // Parallax grid
+      if (heroGrid) {
         heroGrid.style.transform = `translateY(${scrollY * 0.3}px)`;
       }
-    }, { passive: true });
-  }
+    }
+  }, { passive: true });
 
   // ============================================================
   // 7. SMOOTH SCROLL for all anchor links
@@ -262,6 +277,27 @@
   // Section titles: clip-path reveal
   document.querySelectorAll('.section-title').forEach(el => revealObserver.observe(el));
 
+  // WORD-BY-WORD REVEAL for section titles
+  document.querySelectorAll('.section-title').forEach(title => {
+    const text = title.textContent;
+    const words = text.split(/(\s+)/);
+    title.innerHTML = '';
+    title.style.clipPath = 'none';
+    title.style.opacity = '1';
+    title.style.transform = 'none';
+    words.forEach((word, i) => {
+      if (word.trim() === '') {
+        title.appendChild(document.createTextNode(word));
+      } else {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.className = 'word-reveal';
+        span.style.transitionDelay = (i * 0.06) + 's';
+        title.appendChild(span);
+      }
+    });
+  });
+
   // Section labels: slide-in from left
   document.querySelectorAll('.section-label').forEach(el => revealObserver.observe(el));
 
@@ -322,5 +358,32 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // ============================================================
+  // 12. LIVE PRICE TICKER (simulated)
+  // ============================================================
+  const basePrice = 30.64;
+  const priceEl = document.getElementById('live-price');
+  const changeEl = document.getElementById('live-change');
+  const volEl = document.getElementById('live-vol');
+
+  function updateTicker() {
+    if (!priceEl) return;
+    const delta = (Math.random() - 0.48) * 0.35;
+    const newPrice = basePrice + delta;
+    const pctChange = (delta / basePrice) * 100;
+    priceEl.textContent = '$' + newPrice.toFixed(2);
+    const sign = delta >= 0 ? '+' : '';
+    changeEl.textContent = sign + delta.toFixed(2) + ' (' + sign + pctChange.toFixed(2) + '%)';
+    changeEl.className = 'live-change' + (delta < 0 ? ' negative' : '');
+    // Simulate volume updates
+    if (volEl) {
+      const vol = (4.2 + Math.random() * 1.5).toFixed(1);
+      volEl.textContent = vol + 'M';
+    }
+  }
+
+  updateTicker();
+  setInterval(updateTicker, 4000);
 
 })();
