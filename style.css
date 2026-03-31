@@ -1388,14 +1388,14 @@ a, button, [role="button"], input, textarea, select {
   background-clip: text;
 }
 
-/* Animated gradient line separator between sections */
+/* Subtle gradient line between sections */
 .section::before {
   content: '';
   display: block;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-accent) 20%, var(--color-teal) 80%, transparent);
-  opacity: 0.3;
-  margin-bottom: clamp(var(--space-16), 8vw, var(--space-32));
+  opacity: 0.15;
+  margin-bottom: 0;
 }
 
 .hero + .section::before,
@@ -1558,4 +1558,112 @@ a, button, [role="button"], input, textarea, select {
 .nav-link.active::after {
   width: 60%;
   left: 20%;
+}
+
+/* === INSTITUTIONAL HOLDERS === */
+.holder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.holder-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: border-color 0.2s ease;
+}
+
+.holder-card:hover {
+  border-color: var(--color-border-light);
+}
+
+.holder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.holder-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.holder-amount {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.holder-bar-wrap {
+  height: 6px;
+  background: var(--color-surface-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.holder-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-teal));
+  border-radius: 3px;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === RISK DETAIL (expandable mitigant) === */
+.risk-detail {
+  font-size: var(--text-xs);
+  color: var(--color-teal);
+  line-height: 1.7;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.3s ease,
+              padding-top 0.3s ease,
+              margin-top 0.3s ease;
+  padding-top: 0;
+  margin-top: 0;
+  border-top: 1px solid transparent;
+}
+
+.risk-detail strong {
+  color: var(--color-text);
+}
+
+.risk-card.expanded .risk-detail {
+  max-height: 200px;
+  opacity: 1;
+  padding-top: var(--space-3);
+  margin-top: var(--space-3);
+  border-top-color: var(--color-border);
+}
+
+.risk-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.risk-card::after {
+  content: '+';
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-5);
+  font-size: var(--text-lg);
+  color: var(--color-text-faint);
+  font-weight: 300;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.risk-card.expanded::after {
+  content: '\2212';
+  color: var(--color-teal);
 }

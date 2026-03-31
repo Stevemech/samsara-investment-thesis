@@ -248,7 +248,16 @@
   }
 
   // ============================================================
-  // 10. BACK TO TOP
+  // 10. EXPANDABLE RISK CARDS
+  // ============================================================
+  document.querySelectorAll('.risk-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+
+  // ============================================================
+  // 11. BACK TO TOP
   // ============================================================
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {

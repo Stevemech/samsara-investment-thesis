@@ -561,6 +561,37 @@
           </table>
         </div>
 
+        <div class="inst-holders" data-animate>
+          <h4 class="subsection-title" style="margin-top:var(--space-8)">Institutional Conviction</h4>
+          <p class="body-text" style="margin-bottom:var(--space-6)">Smart money is accumulating. The top institutional holders have all increased positions in the most recent quarter.</p>
+          <div class="holder-grid">
+            <div class="holder-card">
+              <div class="holder-header">
+                <span class="holder-name">Baillie Gifford</span>
+                <span class="holder-badge badge-achieved">+15% QoQ</span>
+              </div>
+              <span class="holder-amount">$1.69B</span>
+              <div class="holder-bar-wrap"><div class="holder-bar" style="width:100%"></div></div>
+            </div>
+            <div class="holder-card">
+              <div class="holder-header">
+                <span class="holder-name">Vanguard Group</span>
+                <span class="holder-badge badge-achieved">+11.5% QoQ</span>
+              </div>
+              <span class="holder-amount">$1.17B</span>
+              <div class="holder-bar-wrap"><div class="holder-bar" style="width:69%"></div></div>
+            </div>
+            <div class="holder-card">
+              <div class="holder-header">
+                <span class="holder-name">BlackRock</span>
+                <span class="holder-badge badge-achieved">+13.6% QoQ</span>
+              </div>
+              <span class="holder-amount">$888M</span>
+              <div class="holder-bar-wrap"><div class="holder-bar" style="width:53%"></div></div>
+            </div>
+          </div>
+        </div>
+
         <div class="analyst-card" data-animate>
           <h4 class="analyst-title">Wall Street Consensus</h4>
           <div class="analyst-targets">
@@ -652,13 +683,14 @@
         <h2 class="section-title">Bear Case &amp; Risk Factors</h2>
         <p class="body-text section-intro">No thesis is complete without an honest assessment of what could go wrong. These risks are real and should be sized appropriately.</p>
 
-        <div class="risk-grid">
+        <div class="risk-grid" id="risk-grid">
           <article class="risk-card" data-animate>
             <div class="risk-header">
               <span class="risk-severity severity-medium">Medium</span>
               <h3 class="risk-title">Execution Risk at Scale</h3>
             </div>
             <p class="risk-desc">Maintaining 30% growth at $1.9B ARR requires flawless execution in sales, product, and operations. Growth deceleration is inevitable — the question is the slope.</p>
+            <div class="risk-detail"><strong>Mitigant:</strong> Net new ARR accelerated to $432M (+21% YoY) in FY26. The 12,000+ customer base with <1% TAM penetration provides long runway. International expansion is still early.</div>
           </article>
           <article class="risk-card" data-animate>
             <div class="risk-header">
@@ -666,6 +698,7 @@
               <h3 class="risk-title">Hardware Margin Pressure</h3>
             </div>
             <p class="risk-desc">Hardware is the customer acquisition wedge, not the business model. But supply chain disruptions or component cost increases could pressure near-term margins.</p>
+            <div class="risk-detail"><strong>Mitigant:</strong> Gross margins expanded from 70.9% to 76.7% over 4 years, showing the software revenue mix is winning. 98% of revenue is subscription-based.</div>
           </article>
           <article class="risk-card" data-animate>
             <div class="risk-header">
@@ -673,6 +706,7 @@
               <h3 class="risk-title">Competition from Incumbents</h3>
             </div>
             <p class="risk-desc">Large incumbents (Geotab, Trimble, Verizon Connect) compete on individual features. Samsara's integrated platform and AI capabilities create a defensible moat, but competition is real.</p>
+            <div class="risk-detail"><strong>Mitigant:</strong> 25T+ annual data points create AI models competitors can't replicate. NRR >115% proves customers are expanding, not churning. 8-product platform creates massive switching costs.</div>
           </article>
           <article class="risk-card" data-animate>
             <div class="risk-header">
@@ -680,6 +714,7 @@
               <h3 class="risk-title">Macro/Fleet Spending Sensitivity</h3>
             </div>
             <p class="risk-desc">Economic downturns could slow fleet expansion and technology spending. However, Samsara's ROI story (815%, 3-6 month payback) provides counter-cyclical resilience.</p>
+            <div class="risk-detail"><strong>Mitigant:</strong> IDC-verified $2.02M average annual benefits per customer. Insurance savings alone often exceed subscription costs. Compliance requirements are non-discretionary.</div>
           </article>
           <article class="risk-card" data-animate>
             <div class="risk-header">
@@ -687,6 +722,7 @@
               <h3 class="risk-title">Stock-Based Compensation</h3>
             </div>
             <p class="risk-desc">SBC at 19.5% of revenue is declining but still elevated. Continued dilution is a drag on per-share value. The trend is positive (down from 53%) but bears watching.</p>
+            <div class="risk-detail"><strong>Mitigant:</strong> SBC/Revenue has compressed 34 percentage points in 4 years (53.4% → 19.5%). CFO Dominic Phillips (ex-Morgan Stanley) actively manages the dilution narrative. FCF of $207M is the real cash story.</div>
           </article>
           <article class="risk-card" data-animate>
             <div class="risk-header">
@@ -694,6 +730,7 @@
               <h3 class="risk-title">Insurance Market Normalization</h3>
             </div>
             <p class="risk-desc">If commercial auto insurance losses stabilize, the urgency to adopt telematics could moderate. However, regulatory mandates and nuclear verdict trends appear structural.</p>
+            <div class="risk-detail"><strong>Mitigant:</strong> Nuclear verdicts are a structural legal trend, not cyclical. FMCSA regulations only expand. Once deployed, Samsara becomes operationally embedded — insurance normalization doesn't trigger churn.</div>
           </article>
         </div>
       </div>
