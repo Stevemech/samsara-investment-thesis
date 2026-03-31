@@ -13,7 +13,30 @@
 </head>
 <body>
   <div class="scroll-progress" id="scroll-progress"></div>
-  <canvas class="bg-canvas" id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- RISING STOCK ARROW -->
+  <div class="stock-arrow" id="stock-arrow" aria-hidden="true">
+    <svg viewBox="0 0 120 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="arrowGradient" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="rgba(204,255,0,0)" />
+          <stop offset="100%" stop-color="rgba(204,255,0,0.2)" />
+        </linearGradient>
+        <linearGradient id="lineGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#00D4AA" />
+          <stop offset="50%" stop-color="#CCFF00" />
+          <stop offset="100%" stop-color="#EEFF88" />
+        </linearGradient>
+      </defs>
+      <!-- Trail/fill area -->
+      <path id="arrow-trail" class="stock-arrow-trail" d="" />
+      <!-- Main line -->
+      <path id="arrow-line" class="stock-arrow-line" stroke="url(#lineGrad)" d="" />
+      <!-- Arrow head -->
+      <polygon id="arrow-head" class="stock-arrow-head" points="" />
+    </svg>
+  </div>
+
   <div class="bg-particles" id="bg-particles" aria-hidden="true"></div>
 
   <!-- SKIP LINK -->

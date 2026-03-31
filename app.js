@@ -387,106 +387,62 @@
   setInterval(updateTicker, 4000);
 
   // ============================================================
-  // 14. BACKGROUND STOCK CHART (Canvas)
+  // 14. RISING NEON STOCK ARROW
   // ============================================================
-  const canvas = document.getElementById('bg-canvas');
-  if (canvas && window.innerWidth > 768) {
-    const ctx = canvas.getContext('2d');
-    let w, h;
-    const chartPoints = [];
-    const totalPoints = 200;
+  const arrowContainer = document.getElementById('stock-arrow');
+  const arrowLine = document.getElementById('arrow-line');
+  const arrowTrail = document.getElementById('arrow-trail');
+  const arrowHead = document.getElementById('arrow-head');
 
-    // Generate a realistic stock chart path (upward trend with volatility)
-    function generateChart() {
-      chartPoints.length = 0;
-      let price = 15; // start low (IPO)
-      for (let i = 0; i < totalPoints; i++) {
-        const t = i / totalPoints;
-        // Trend: starts at 15, dips to 10, rallies to 45, pulls back to 31
-        const trend = 15 + t * 25 * Math.sin(t * Math.PI * 0.9);
-        const noise = (Math.random() - 0.5) * 3;
-        price = trend + noise;
-        chartPoints.push(price);
-      }
-    }
+  if (arrowContainer && arrowLine) {
+    // The arrow path: a stock-chart-like upward zigzag
+    // x: 0-120, y: 800 (bottom) to 0 (top)
+    // As you scroll, the line draws upward with volatility
+    const points = [
+      [60, 780], [70, 720], [45, 680], [75, 620], [50, 570],
+      [80, 510], [40, 460], [70, 400], [55, 350], [85, 290],
+      [45, 240], [75, 180], [50, 130], [80, 80], [60, 20]
+    ];
 
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    }
-
-    function drawChart() {
+    function updateArrow() {
       const scrollY = window.scrollY;
       const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPct = Math.min(scrollY / Math.max(docH, 1), 1);
+      const pct = Math.min(scrollY / Math.max(docH, 1), 1);
 
-      // How many points to draw based on scroll
-      const visibleCount = Math.floor(scrollPct * totalPoints) + 10;
-
-      ctx.clearRect(0, 0, w, h);
-
-      if (chartPoints.length === 0) return;
-
-      const minP = Math.min(...chartPoints);
-      const maxP = Math.max(...chartPoints);
-      const rangeP = maxP - minP || 1;
-
-      // Draw the line
-      ctx.beginPath();
-      const drawCount = Math.min(visibleCount, totalPoints);
-      for (let i = 0; i < drawCount; i++) {
-        const x = (i / totalPoints) * w;
-        const y = h - ((chartPoints[i] - minP) / rangeP) * h * 0.6 - h * 0.2;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
+      // Show after scrolling a bit
+      if (scrollY > 100) {
+        arrowContainer.classList.add('visible');
+      } else {
+        arrowContainer.classList.remove('visible');
       }
 
-      // Stroke the line
-      const grad = ctx.createLinearGradient(0, 0, w, 0);
-      grad.addColorStop(0, 'rgba(0, 212, 170, 0.6)');
-      grad.addColorStop(0.6, 'rgba(204, 255, 0, 0.5)');
-      grad.addColorStop(1, 'rgba(204, 255, 0, 0.3)');
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
+      // How many points to show based on scroll
+      const count = Math.max(2, Math.floor(pct * points.length) + 2);
+      const visible = points.slice(0, Math.min(count, points.length));
 
-      // Fill area under the line
-      if (drawCount > 1) {
-        const lastX = ((drawCount - 1) / totalPoints) * w;
-        const lastY = h - ((chartPoints[drawCount - 1] - minP) / rangeP) * h * 0.6 - h * 0.2;
-        ctx.lineTo(lastX, h);
-        ctx.lineTo(0, h);
-        ctx.closePath();
-        const fillGrad = ctx.createLinearGradient(0, 0, 0, h);
-        fillGrad.addColorStop(0, 'rgba(204, 255, 0, 0.04)');
-        fillGrad.addColorStop(1, 'rgba(204, 255, 0, 0)');
-        ctx.fillStyle = fillGrad;
-        ctx.fill();
+      // Build the line path
+      let d = 'M ' + visible[0][0] + ' ' + visible[0][1];
+      for (let i = 1; i < visible.length; i++) {
+        d += ' L ' + visible[i][0] + ' ' + visible[i][1];
       }
+      arrowLine.setAttribute('d', d);
 
-      // Draw a small dot at the leading edge
-      if (drawCount > 1) {
-        const tipX = ((drawCount - 1) / totalPoints) * w;
-        const tipY = h - ((chartPoints[drawCount - 1] - minP) / rangeP) * h * 0.6 - h * 0.2;
-        ctx.beginPath();
-        ctx.arc(tipX, tipY, 3, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(204, 255, 0, 0.6)';
-        ctx.fill();
+      // Build the trail (fill area)
+      const lastPt = visible[visible.length - 1];
+      const trailD = d + ' L ' + lastPt[0] + ' 800 L ' + visible[0][0] + ' 800 Z';
+      arrowTrail.setAttribute('d', trailD);
 
-        // Glow
-        ctx.beginPath();
-        ctx.arc(tipX, tipY, 8, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(204, 255, 0, 0.1)';
-        ctx.fill();
-      }
+      // Arrow head at the tip
+      const tipX = lastPt[0];
+      const tipY = lastPt[1];
+      const headSize = 12;
+      arrowHead.setAttribute('points',
+        `${tipX},${tipY - headSize} ${tipX - headSize * 0.7},${tipY + headSize * 0.5} ${tipX + headSize * 0.7},${tipY + headSize * 0.5}`
+      );
     }
 
-    generateChart();
-    resize();
-    drawChart();
-
-    window.addEventListener('resize', () => { resize(); drawChart(); });
-    window.addEventListener('scroll', drawChart, { passive: true });
+    updateArrow();
+    window.addEventListener('scroll', updateArrow, { passive: true });
   }
 
   // ============================================================
