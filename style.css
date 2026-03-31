@@ -369,7 +369,7 @@ a, button, [role="button"], input, textarea, select {
 
 /* === SECTIONS === */
 .section {
-  padding: clamp(var(--space-16), 8vw, var(--space-32)) var(--space-6);
+  padding: clamp(var(--space-12), 6vw, var(--space-24)) var(--space-6);
 }
 
 .section-alt {
@@ -403,8 +403,8 @@ a, button, [role="button"], input, textarea, select {
   font-size: var(--text-xl);
   font-weight: 400;
   color: var(--color-text);
-  margin-top: var(--space-16);
-  margin-bottom: var(--space-6);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-5);
 }
 
 .section-intro {
@@ -426,18 +426,23 @@ a, button, [role="button"], input, textarea, select {
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
+  gap: var(--space-10);
   align-items: start;
 }
 
+.two-col .col-text .thesis-highlights {
+  /* Highlights span full width below both columns on desktop */
+}
+
 @media (max-width: 768px) {
-  .two-col { grid-template-columns: 1fr; gap: var(--space-8); }
+  .two-col { grid-template-columns: 1fr; gap: var(--space-6); }
 }
 
 .col-kpis {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  align-content: start;
 }
 
 @media (max-width: 480px) {
@@ -516,14 +521,21 @@ a, button, [role="button"], input, textarea, select {
 }
 
 .chart-card-full {
-  margin-top: var(--space-8);
+  margin-top: var(--space-6);
 }
 
 /* === METRICS GRID === */
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .metrics-grid { grid-template-columns: 1fr; }
 }
 
 .metric-card {
@@ -726,13 +738,14 @@ a, button, [role="button"], input, textarea, select {
 .pricing-ladder {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-4);
   padding: var(--space-6);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow-x: auto;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .pricing-tier {
@@ -837,9 +850,16 @@ a, button, [role="button"], input, textarea, select {
 /* === STAT CALLOUTS (Tailwinds) === */
 .stat-callouts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--space-6);
-  margin-bottom: var(--space-12);
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+@media (max-width: 900px) {
+  .stat-callouts { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .stat-callouts { grid-template-columns: 1fr; }
 }
 
 .stat-callout {
@@ -882,7 +902,7 @@ a, button, [role="button"], input, textarea, select {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
 }
 
 .impact-stat {
@@ -951,6 +971,7 @@ a, button, [role="button"], input, textarea, select {
 /* === CATALYSTS === */
 .catalyst-timeline {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: var(--space-4);
 }
 
@@ -1067,7 +1088,7 @@ a, button, [role="button"], input, textarea, select {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
 }
 
 @media (max-width: 768px) {
@@ -1139,7 +1160,7 @@ a, button, [role="button"], input, textarea, select {
   border: 1px solid var(--color-accent);
   border-radius: var(--radius-xl);
   padding: var(--space-8);
-  margin-top: var(--space-12);
+  margin-top: var(--space-8);
   text-align: center;
   box-shadow: var(--shadow-glow);
 }
@@ -1417,10 +1438,17 @@ a, button, [role="button"], input, textarea, select {
 
 /* === THESIS HIGHLIGHTS === */
 .thesis-highlights {
-  margin-top: var(--space-6);
-  display: flex;
-  flex-direction: column;
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-3);
+}
+
+@media (max-width: 900px) {
+  .thesis-highlights { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .thesis-highlights { grid-template-columns: 1fr; }
 }
 
 .highlight-item {
