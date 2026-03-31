@@ -446,6 +446,67 @@
   }
 
   // ============================================================
+  // 14B. MOUSE-TRACKING CARD TILT
+  // ============================================================
+  document.querySelectorAll('.kpi-card, .stat-callout, .moat-card, .scenario-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+      setTimeout(() => { card.style.transition = ''; }, 500);
+    });
+  });
+
+  // ============================================================
+  // 14C. TYPEWRITER EFFECT ON HERO SUBTITLE
+  // ============================================================
+  const heroSub = document.querySelector('.hero-sub');
+  if (heroSub) {
+    const originalHTML = heroSub.innerHTML;
+    // Type out just the text part after the animations complete
+    setTimeout(() => {
+      const priceSpan = heroSub.querySelector('.text-accent');
+      if (priceSpan) {
+        // Add blinking cursor after price
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        cursor.textContent = '|';
+        priceSpan.after(cursor);
+        setTimeout(() => cursor.remove(), 3000);
+      }
+    }, 2000);
+  }
+
+  // ============================================================
+  // 14D. SCROLL-TRIGGERED SECTION COUNTER
+  // ============================================================
+  let sectionIndex = 0;
+  const sectionNames = ['Hero', 'Thesis', 'Financials', 'Management', 'Products', 'Tailwinds', 'Valuation', 'Catalysts', 'Risks', 'Conclusion', 'Paper'];
+  const sectionCounter = document.createElement('div');
+  sectionCounter.className = 'section-counter';
+  sectionCounter.innerHTML = '<span class="sc-num">01</span><span class="sc-sep">/</span><span class="sc-total">11</span>';
+  document.body.appendChild(sectionCounter);
+
+  const scNum = sectionCounter.querySelector('.sc-num');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    let idx = 0;
+    document.querySelectorAll('section[id]').forEach((s, i) => {
+      if (scrollY >= s.offsetTop - 200) idx = i;
+    });
+    if (idx !== sectionIndex) {
+      sectionIndex = idx;
+      scNum.textContent = String(idx + 1).padStart(2, '0');
+    }
+    sectionCounter.classList.toggle('visible', scrollY > 300);
+  }, { passive: true });
+
+  // ============================================================
   // 15. FLOATING EMOJI PARTICLES
   // ============================================================
   const particleContainer = document.getElementById('bg-particles');

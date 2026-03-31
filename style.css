@@ -244,6 +244,68 @@ a, button, [role="button"], input, textarea, select {
   .bg-particles { display: none; }
 }
 
+/* === TYPING CURSOR === */
+.typing-cursor {
+  color: var(--color-accent);
+  font-weight: 300;
+  animation: cursorBlink 0.8s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* === SECTION COUNTER (fixed left) === */
+.section-counter {
+  position: fixed;
+  left: 20px;
+  bottom: 50%;
+  transform: translateY(50%);
+  z-index: 80;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-faint);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.section-counter.visible { opacity: 1; }
+
+.sc-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.sc-sep {
+  font-size: 10px;
+  color: var(--color-text-faint);
+  opacity: 0.4;
+}
+
+.sc-total {
+  font-size: 12px;
+  color: var(--color-text-faint);
+}
+
+@media (max-width: 768px) {
+  .section-counter { display: none; }
+}
+
+/* === MOUSE-TILT CARD TRANSITIONS === */
+.kpi-card, .stat-callout, .moat-card {
+  transition: transform 0.1s ease, border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+}
+
 /* === STICKY NAV === */
 .site-header {
   position: fixed;
