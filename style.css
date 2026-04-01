@@ -2507,18 +2507,33 @@ a, button, [role="button"], input, textarea, select {
   position: sticky;
   top: 52px;
   z-index: 95;
-  background: rgba(21, 26, 18, 0.9);
+  background: rgba(21, 26, 18, 0.92);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--color-border);
-  padding: 6px 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
+  padding: 7px 0;
+  font-size: 12px;
   font-family: var(--font-body);
   font-variant-numeric: tabular-nums;
-  overflow-x: auto;
   white-space: nowrap;
+  overflow: hidden;
+}
+
+.live-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  max-width: var(--content-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.live-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .live-dot {
@@ -2537,29 +2552,34 @@ a, button, [role="button"], input, textarea, select {
 .live-label {
   font-weight: 700;
   color: var(--color-text);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  font-size: 13px;
 }
 
 .live-price {
   font-weight: 700;
   color: var(--color-text);
+  font-size: 13px;
 }
 
 .live-change {
   font-weight: 600;
   color: #00D4AA;
+  font-size: 12px;
 }
 
 .live-change.negative { color: #FF4D4D; }
 
 .live-sep {
-  color: var(--color-text-faint);
-  opacity: 0.3;
+  color: var(--color-border-light);
+  opacity: 0.4;
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .live-stat {
   color: var(--color-text-faint);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .live-stat strong {
@@ -2567,10 +2587,19 @@ a, button, [role="button"], input, textarea, select {
   font-weight: 600;
 }
 
+.live-accent {
+  color: var(--color-accent) !important;
+}
+
+@media (max-width: 1100px) {
+  .live-inner { justify-content: flex-start; overflow-x: auto; }
+  .live-group:last-child { display: none; }
+}
+
 @media (max-width: 768px) {
-  .live-bar { gap: 8px; padding: 6px 16px; font-size: 12px; }
-  .live-stat { display: none; }
-  .live-stat:nth-child(-n+7) { display: inline; }
+  .live-inner { padding: 0 var(--space-4); gap: 10px; }
+  .live-group:nth-child(n+4) { display: none; }
+  .live-sep:nth-child(n+4) { display: none; }
 }
 
 /* --- Word-by-word reveal --- */

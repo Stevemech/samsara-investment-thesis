@@ -371,23 +371,39 @@
   }
 
   // ============================================================
-  // 12. LIVE PRICE TICKER (simulated)
+  // 12. LIVE PRICE TICKER (simulated cumulative random walk)
   // ============================================================
   const basePrice = 30.64;
+  let currentPrice = basePrice;
+  const sharesOut = 574; // millions
+  const revenue = 1.27; // TTM revenue in billions
   const priceEl = document.getElementById('live-price');
   const changeEl = document.getElementById('live-change');
   const volEl = document.getElementById('live-vol');
+  const mcapEl = document.getElementById('live-mcap');
+  const evsEl = document.getElementById('live-evs');
+  const psEl = document.getElementById('live-ps');
+  const hiEl = document.getElementById('live-hi');
+  const loEl = document.getElementById('live-lo');
 
   function updateTicker() {
     if (!priceEl) return;
-    const delta = (Math.random() - 0.48) * 0.35;
-    const newPrice = basePrice + delta;
+    // Cumulative random walk with slight upward drift
+    const step = (Math.random() - 0.47) * 0.18;
+    currentPrice = Math.max(basePrice * 0.92, Math.min(basePrice * 1.08, currentPrice + step));
+    const delta = currentPrice - basePrice;
     const pctChange = (delta / basePrice) * 100;
-    priceEl.textContent = '$' + newPrice.toFixed(2);
+    priceEl.textContent = '$' + currentPrice.toFixed(2);
     const sign = delta >= 0 ? '+' : '';
     changeEl.textContent = sign + delta.toFixed(2) + ' (' + sign + pctChange.toFixed(2) + '%)';
     changeEl.className = 'live-change' + (delta < 0 ? ' negative' : '');
-    // Simulate volume updates
+    // Derived stats that move with price
+    const mcap = (currentPrice * sharesOut / 1000).toFixed(1);
+    if (mcapEl) mcapEl.textContent = '$' + mcap + 'B';
+    const ev = currentPrice * sharesOut / 1000 + 0.05; // minimal net debt
+    if (evsEl) evsEl.textContent = (ev / revenue).toFixed(1) + 'x';
+    if (psEl) psEl.textContent = (currentPrice * sharesOut / 1000 / revenue).toFixed(1) + 'x';
+    // Volume with slight variance
     if (volEl) {
       const vol = (4.2 + Math.random() * 1.5).toFixed(1);
       volEl.textContent = vol + 'M';
