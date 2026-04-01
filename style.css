@@ -492,8 +492,8 @@ a, button, [role="button"], input, textarea, select {
   .hero { padding: var(--space-12) var(--space-4); min-height: calc(100dvh - 84px); }
   .hero-sub { font-size: var(--text-sm); padding: 0 var(--space-2); }
   .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.08em; }
-  .hero-headline { font-size: clamp(2rem, 0.5rem + 8vw, 3.5rem); }
-  .hero-content { max-width: 100%; padding: 0 var(--space-2); }
+  .hero-headline { font-size: clamp(2rem, 0.5rem + 8vw, 3.5rem); text-align: center; }
+  .hero-content { max-width: 100%; padding: 0 var(--space-4); text-align: center; margin: 0 auto; }
 }
 
 @media (max-width: 768px) {
