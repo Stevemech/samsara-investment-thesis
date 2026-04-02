@@ -430,6 +430,9 @@ a, button, [role="button"], input, textarea, select {
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-eyebrow {
