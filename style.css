@@ -438,6 +438,9 @@ a, button, [role="button"], input, textarea, select {
   color: var(--color-text-muted);
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  text-align: center;
+  display: block;
+  width: 100%;
   margin-bottom: var(--space-6);
   opacity: 0;
   transform: translateY(12px);
@@ -451,7 +454,6 @@ a, button, [role="button"], input, textarea, select {
   line-height: 1.15;
   color: var(--color-text);
   margin: 0 auto var(--space-6);
-  max-width: 14ch;
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
