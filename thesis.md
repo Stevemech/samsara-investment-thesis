@@ -209,6 +209,23 @@ Free cash flow is the ultimate validator of a software business model because, u
 
 The FCF bridge reveals where the leverage is coming from. Operating cash flow of $236M in FY2026, offset by $29M in capital expenditures, produced $207M in free cash flow. The capital-light nature of the model — despite being an IoT company that sells physical hardware — is a function of the subscription economics: hardware is subsidized at deployment and recovered through multi-year subscription contracts, with the cost spread over the customer lifetime. As the installed base grows and hardware costs per unit decline with scale, FCF margins should continue expanding toward 18-22% over the next 3-4 years.
 
+## Customer Cohort Economics: The $100K+ ARR Engine
+
+The most important metric in Samsara's business is not total revenue — it is the growth and economics of $100K+ ARR customers:
+
+| Metric | Q4 FY2025 | Q4 FY2026 | YoY Change |
+|--------|----------|----------|-----------|
+| $100K+ ARR Customers | 2,363 | 3,194 | +35% (+831 customers) |
+| $100K+ Customer ARR | ~$875M | ~$1,200M | +37% |
+| $100K+ as % of Total ARR | ~60% | ~63% | +3pp |
+| Net New $100K+ Customers (Q4) | N/A | +204 in quarter | |
+| Emerging Products % of Net New ACV | N/A | 23% | |
+| Emerging Product ARR | N/A | >$100M | Asset tags ARR tripled YoY |
+
+The data reveals a business that is systematically moving upmarket. Large customers ($100K+ ARR) are growing at 37% — faster than total ARR (30%) — and now represent 63% of total ARR. This upmarket migration has three compounding effects: (1) higher NRR (120%+ for large customers vs. 115% overall), (2) lower churn (enterprise contracts are multi-year), and (3) better unit economics (CAC payback improves with larger deal sizes).
+
+The emerging products data is equally significant: 23% of Q4 net new ACV came from products launched in the last 2-3 years (Asset Tags, Connected Forms, Site Visibility). This means Samsara is not just expanding existing accounts — it is creating entirely new revenue streams that cross-sell into the installed base at near-zero incremental acquisition cost.
+
 ## Forward Financial Model: FY2027-FY2030 Pro Forma P&L
 
 The following model projects Samsara's path from $1.6 billion in revenue to a $3.5 billion platform business over four years. Every assumption is independently sourced and defensible.
@@ -655,6 +672,63 @@ TD Cowen's $55 target — the Street high — represents 80% upside and is based
 
 ---
 
+## TAM Deep-Dive: Bottom-Up Sizing of the $117B+ Opportunity
+
+Samsara's Total Addressable Market is not a single number — it is a composite of multiple overlapping opportunities that expand as the platform adds products. Three independent sources size the market:
+
+| Source | TAM Estimate | Year | CAGR |
+|--------|-------------|------|------|
+| Samsara (company guidance) | $137B | 2024 | N/A |
+| AInvest / industry analysis | $117B | 2025 | 22% ([AInvest](https://www.ainvest.com/news/samsara-path-dominance-capturing-117b-market-2602/)) |
+| KeyBanc Capital Markets | $140B+ | 2025 | N/A ([Investing.com](https://www.investing.com/news/stock-market-news/samsara-tapping-a-vast-and-underdigitized-market-says-keybanc-4401269)) |
+
+**Bottom-Up TAM Decomposition:**
+
+| Segment | TAM | Samsara ARR | Penetration | Growth Drivers |
+|---------|-----|------------|------------|----------------|
+| Connected Fleet Solutions | $51B | ~$1,000M | ~2.0% | ELD 2.0, insurance mandates, fuel optimization |
+| Asset & Equipment Monitoring | $28B | ~$150M | ~0.5% | Asset Tag XS (ARR tripled YoY), construction/mining |
+| Site Visibility & Security | $19B | ~$75M | ~0.4% | Camera-based monitoring, warehouse/depot safety |
+| Connected Maintenance | $12B | ~$95M | ~0.8% | Predictive maintenance AI, Fiix integration |
+| Driver Safety & Compliance | $7B | ~$190M | ~2.7% | AI Safety Coach, FMCSA ELD revisions, nuclear verdicts |
+| **Total Connected Operations** | **$117B+** | **$1,890M** | **~1.6%** | |
+
+At 1.6% penetration of a $117B+ market growing at 22% CAGR, Samsara has at least a decade of runway before TAM becomes a constraint. For comparison, Salesforce was at similar penetration of its CRM TAM when it crossed $2B in revenue — and it subsequently 15x'd to $35B.
+
+The most important nuance: Samsara's TAM is expanding as it adds products. The Asset Tag XS (launched FY2025) tripled its asset-tracking ARR in one year. Samsara Coach (launched March 2026) creates a new AI-coaching TAM that didn't exist 12 months ago. Connected Training opens the $5B+ fleet training market. Each new product adds incremental TAM that compounds the opportunity.
+
+---
+
+## Regulatory Tailwinds: FMCSA Is Samsara's Silent Growth Catalyst
+
+The Federal Motor Carrier Safety Administration (FMCSA) regulatory pipeline is creating non-discretionary demand for connected operations platforms:
+
+### ELD 2.0: Stricter Standards = Samsara Gains Share
+
+FMCSA's upcoming ELD Revisions (expected 2026-2027) will raise the performance bar for certified ELD devices. Key changes ([Ezlogz](https://ezlogz.com/blog/fmcsa-eld-mandate-updates-2026-smarter-compliance-digital-audits/)):
+
+- **Device delisting**: Unreliable ELDs that fail GPS validation or misreport logs will be removed from the registry. Carriers using those devices must replace them — creating forced switching to premium platforms like Samsara
+- **Real-time digital audits**: eRODS transfers enable remote, real-time compliance audits. Fleets need platforms that can instantly transmit accurate, annotated data — a core Samsara capability
+- **Level VIII inspections**: "In-motion" inspections where driver credentials and HOS records transmit automatically. Only fully integrated platforms can support this seamlessly
+- **Pre-2000 engine exemption closure**: Extends electronic traceability to nearly every commercial vehicle
+
+The net effect: FMCSA's tightening standards will accelerate the migration from basic compliance-only ELDs to platform solutions like Samsara that combine ELD compliance with safety, maintenance, and analytics. This is a share-gaining catalyst that operates independent of macroeconomic conditions.
+
+### HOS Reform: New Rulemaking Creates Upgrade Demand
+
+FMCSA has scheduled publication of proposed Hours of Service changes for June 7, 2026 ([Heavy Duty Trucking](https://www.truckinginfo.com/news/fmcsa-sets-june-date-to-publish-its-proposed-hours-of-service-changes)). The proposed changes include:
+- Expanding the short-haul exemption from 12 to 14 hours on-duty
+- Extending the 14-hour limit by up to 2 hours for adverse conditions
+- New flexibility provisions for agricultural and livestock haulers
+
+Each HOS change requires ELD software updates — creating a "compliance event" that triggers fleet operators to evaluate their technology stack. Historically, major FMCSA rulemakings have accelerated fleet telematics spending as carriers seek modern, easily-updatable platforms.
+
+### NHTSA Impaired Driving Technology Mandate (2027)
+
+The 2021 Infrastructure Investment and Jobs Act (Section 24220) mandates all new passenger vehicles include "advanced impaired driving prevention technology" by 2027 ([Yahoo/Gadget Review](https://www.yahoo.com/news/articles/federal-surveillance-tech-becomes-mandatory-161321992.html)). While this applies to passenger vehicles (not commercial), it establishes the regulatory precedent for in-vehicle monitoring technology. The commercial fleet equivalent — AI dashcams and driver monitoring systems — is the exact technology Samsara sells. The regulatory Overton window has shifted permanently in favor of fleet safety technology.
+
+---
+
 ## Competitive Positioning
 
 ### The Platform Advantage in Context
@@ -831,6 +905,60 @@ At $335M in FY2026, SBC remains material. **Mitigation:** SBC/Revenue has declin
 
 ### Risk 6: Key-Person Risk (Probability: Low)
 The thesis partially relies on the Biswas/Bicket founding team. **Mitigation:** The company has scaled to 3,500+ employees with a deep management bench. CFO Phillips provides institutional continuity. The platform's competitive moats (data, switching costs, NRR) are structural rather than dependent on individual leadership.
+
+### The Steel-Manned Bear Case: Why Smart People Are Short
+
+Intellectual honesty requires engaging with the strongest version of the bear case. Here is the most rigorous bear thesis:
+
+**Bear Argument 1: Valuation Is Already Fair**
+"Samsara trades at 9.6x NTM revenue. With SBC-adjusted FCF margins of ~8%, the true FCF yield is thin. Applying a more rigorous 30x SBC-adjusted FCF multiple yields an $18-20 price target, implying 35% downside."
+
+*Counter*: This argument freezes margin profiles in time. Samsara's SBC-adjusted FCF margin is expanding 400-500bps annually. By FY2028, SBC-adjusted FCF will be $250M+ even under conservative assumptions, making 30x a $13B EV floor — 25% below current. The bear case requires margins to stop expanding, which contradicts every observable trend.
+
+**Bear Argument 2: Motive Will Erode Pricing Power**
+"Motive's $150M war chest and expected IPO will intensify competition, compressing ASPs and slowing Samsara's net new ARR adds."
+
+*Counter*: Samsara's enterprise accounts ($100K+ ARR) represent 63% of total ARR and have 120%+ NRR. These accounts use 5+ products with 6 integrations on average. Motive competes primarily in SMB telematics — a segment Samsara is strategically moving away from. The competitive overlap at the enterprise level (where all the value accrues) is minimal.
+
+**Bear Argument 3: Hardware Dependency Creates Structural Margin Ceiling**
+"Unlike pure SaaS companies, Samsara must manufacture and deploy physical devices. This creates a gross margin ceiling of ~80% versus 85-90% for pure software."
+
+*Counter*: True, but the margin ceiling is expanding, not contracting. Gross margins have improved from 69% to 77% over four years as software revenue grows faster than hardware. By FY2030, at 82%+ gross margins, the 3-5 percentage point discount to pure SaaS is immaterial and is more than offset by Samsara's structural switching cost advantage (physical devices + data + integrations create stickier relationships than software-only vendors).
+
+---
+
+## Insider Ownership & Institutional Flow Analysis
+
+### Insider Ownership: Founders Retain Massive Skin in the Game
+
+Despite routine 10b5-1 plan sales for tax and estate planning, Samsara's founding team retains extraordinary alignment with shareholders:
+
+| Insider | Role | Ownership | Notes |
+|---------|------|-----------|-------|
+| Sanjit Biswas | CEO & Co-Founder | 10%+ beneficial owner + 902,213 RSUs | Still the largest individual holder; all sales pre-planned under 10b5-1 (adopted Sep 2025) ([SEC Filing](https://www.stocktitan.net/sec-filings/IOT/form-4-samsara-inc-insider-trading-activity-c6321380666f.html)) |
+| John Bicket | CTO & Co-Founder | Major holder, multi-million share position | Systematic 10b5-1 sales alongside Biswas; retains substantial equity |
+| Dominic Phillips | CFO | Active 10b5-1 plan, retains large RSU position | Morgan Stanley M&A background, institution-caliber capital allocator |
+| Total Insider Ownership | | ~46.5% of shares | Among the highest insider ownership rates in enterprise software ([MarketBeat](https://www.marketbeat.com/stocks/NYSE/IOT/insider-trades/)) |
+
+The 46.5% insider ownership rate is exceptionally high for a company at Samsara's scale ($17.6B market cap). For context, CrowdStrike insiders own approximately 5%, Datadog insiders own approximately 7%, and Cloudflare insiders own approximately 15%. Samsara's co-founders owning nearly half the company creates alignment that most enterprise software investors can only dream of. When founders own this much equity, they are not optimizing for quarterly earnings calls — they are building for the decade.
+
+### Institutional Accumulation: Smart Money Is Loading Up
+
+Institutional ownership tells a compelling story of accumulating conviction:
+
+| Institution | Shares (Latest 13F) | Change vs. Prior | Ownership % |
+|------------|---------------------|-----------------|------------|
+| Baillie Gifford | Largest institutional holder | Long-term growth specialist | ~8%+ |
+| Vanguard Group | 20,978,589 shares (Q4 2024) | +4.3% QoQ, +136% over 2 years | ~3.6% |
+| BlackRock | Major holder | Consistent accumulation | ~3% |
+| Sands Capital Management | Major holder | Growth-focused deep conviction | ~2.5% |
+| Morgan Stanley | Major holder | Phillips' former employer | ~2% |
+| T. Rowe Price | Major holder | Mid-cap growth specialist | ~2% |
+| Goldman Sachs | Major holder | Initiated coverage with Buy | ~1.5% |
+| Fidelity (FMR) | Major holder | Increasing position | ~1.5% |
+| **Total: 555 institutions** | **330.6M shares** | | |
+
+The presence of Baillie Gifford — the Scottish firm famous for early, concentrated bets on transformational companies (Tesla, Shopify, Amazon) — as the largest institutional holder is a strong signal. Baillie Gifford's investment philosophy is explicitly long-term (5-10 year holding periods) and they typically only take top-5 positions in companies they believe will 5-10x. Their presence at the top of Samsara's shareholder register is a meaningful endorsement ([Fintel](https://fintel.io/so/us/iot)).
 
 ---
 
@@ -1073,6 +1201,25 @@ The asymmetry is stark: the probability-weighted expected return of +41% is driv
 
 ---
 
+## Blue-Sky Scenario: The $100+ Per Share Case
+
+What would need to go right for Samsara to be a 3-bagger from current levels?
+
+| Catalyst | Impact |
+|----------|--------|
+| S&P 500 inclusion (H2 2026) | $2-3B passive buying, 15% of float absorbed |
+| AI Safety Coach drives 30% ARPU uplift | ARR accelerates to 25-28% growth instead of decelerating |
+| Motive IPO at 18x revenue | Re-anchors Samsara's multiple from 9.6x to 15x+ |
+| International revenue hits 25% of total | Adds 5 points of growth that extends the 20%+ growth era |
+| SBC compression to 12% | GAAP EPS of $0.80+ by FY2028, attracting value investors |
+| FCF crosses $500M | Enables $200M+ annual buyback, 2% yield at current price |
+| FY2028 Revenue: $2.5B at 15x EV/Sales | Enterprise value of $37.5B = $65/share |
+| Multiple expansion to 20x (peer median) | Enterprise value of $50B = $87/share |
+
+The blue-sky scenario is not fantasy — it requires Samsara to execute at roughly the same level it has for the past 11 quarters while benefiting from identifiable, dated catalysts. At 20x NTM revenue on FY2028 estimates (the current peer median multiple), Samsara would trade at $87 per share — a 184% return from current levels.
+
+---
+
 ## Non-Obvious Insights: What the Market Is Missing
 
 ### Insight 1: The "Second Mover" Illusion — Samsara Is Actually a First Mover in Connected Operations
@@ -1111,6 +1258,25 @@ Samsara's current profile — 30% growth, approaching GAAP profitability, 9.6x E
 | **Samsara** | **2026** | **9.6x** | **30%** | **?** | **?** |
 
 The pattern is consistent: SaaS companies that cross from GAAP losses to GAAP profitability while maintaining 20%+ growth experience a multiple expansion of 1.5-3x within 12-24 months. Samsara has just crossed that threshold. The most extreme analog — Palantir's 15x re-rating from 6x to 90x — was driven by the combination of GAAP profitability + AI narrative. Samsara has both of those elements (GAAP profitability achieved, AI Safety Coach launched). Even a modest 1.5x re-rating from 9.6x to 14.4x would imply a stock price of $49, representing 60% upside.
+
+---
+
+## SBC Normalization: The Optical Illusion Is Dissolving
+
+Stock-based compensation has been the primary bear argument against Samsara's profitability narrative. But the data shows SBC is normalizing rapidly — and Samsara compares favorably to peers:
+
+| Company | SBC % of Revenue (Latest) | Trend |
+|---------|--------------------------|-------|
+| Snowflake | ~35% | Still elevated ([Business Insider](https://www.businessinsider.com/software-companies-stock-based-compensation-charts-ranking-2026-3)) |
+| JFrog | ~28% | Elevated |
+| Atlassian | ~25% | Elevated |
+| GitLab | ~23% | Declining slowly |
+| Samsara | **20.7%** | **Declining rapidly** (from 53.4% in FY2022) |
+| Datadog | ~18-20% | Moderate |
+| CrowdStrike | ~15-18% | Approaching maturity |
+| ServiceNow | ~10% | Mature benchmark |
+
+Samsara's SBC trajectory — from 53.4% to 20.7% in four years — is the steepest normalization curve in the peer set. At the current pace of compression (~5-7 percentage points per year), SBC will reach 14-15% by FY2028 and approach 10% by FY2030, consistent with mature SaaS economics. The bear argument that SBC invalidates profitability is a rear-view-mirror concern that ignores the trajectory.
 
 ---
 
