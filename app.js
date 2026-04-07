@@ -514,6 +514,43 @@
   }, { passive: true });
 
   // ============================================================
+  // 15B. ANIMATED NUMBER COUNTERS (KPI cards, hero stats)
+  // ============================================================
+  function animateCounter2(el) {
+    const target = el.textContent;
+    const suffix = target.replace(/[\d.,]/g, '');
+    const num = parseFloat(target.replace(/[^\d.]/g, ''));
+    if (isNaN(num)) return;
+    const duration = 1500;
+    const start = performance.now();
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = num * eased;
+      const formatted = current >= 1000 ? Math.round(current).toLocaleString() :
+                        current >= 10 ? current.toFixed(1).replace(/\.0$/, '') :
+                        current.toFixed(1);
+      el.textContent = formatted + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        animateCounter2(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.kpi-value, .hero-stat-value, .stat-number').forEach(el => {
+    if (/\d/.test(el.textContent)) counterObserver.observe(el);
+  });
+
+  // ============================================================
   // 15. FLOATING EMOJI PARTICLES
   // ============================================================
   const particleContainer = document.getElementById('bg-particles');

@@ -1442,31 +1442,52 @@ a, button, [role="button"], input, textarea, select {
 
 /* === FOOTER === */
 .site-footer {
+  background: var(--color-surface);
   border-top: 1px solid var(--color-border);
   padding: var(--space-12) var(--space-6);
-  background: var(--color-bg);
 }
-
 .footer-inner {
   max-width: var(--content-wide);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: auto 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   gap: var(--space-8);
   align-items: start;
 }
-
-@media (max-width: 768px) {
-  .footer-inner { grid-template-columns: 1fr; gap: var(--space-6); }
+.footer-logo {
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  display: inline-block;
+  padding: 2px 8px;
+  margin-bottom: var(--space-2);
 }
-
+.footer-tagline {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.footer-links a {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--color-accent); }
+.footer-disclaimer p {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+  line-height: 1.6;
+}
 .footer-brand { display: flex; flex-direction: column; gap: var(--space-3); }
-
-.footer-compiled {
-  font-size: var(--text-xs);
-  color: var(--color-text-faint);
-}
-
 .footer-label {
   font-size: var(--text-xs);
   font-weight: 600;
@@ -1475,14 +1496,14 @@ a, button, [role="button"], input, textarea, select {
   letter-spacing: 0.1em;
   margin-bottom: var(--space-2);
 }
-
 .footer-text {
   font-size: var(--text-xs);
   color: var(--color-text-faint);
   line-height: 1.6;
 }
-
-.footer-sources .footer-text { max-width: none; }
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr; }
+}
 
 /* === ANIMATION STATES === */
 .fade-in {
@@ -1680,11 +1701,11 @@ a, button, [role="button"], input, textarea, select {
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-teal));
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #CCFF00, #00D4AA);
   z-index: 200;
   transition: width 0.1s linear;
-  width: 0%;
 }
 
 /* === THESIS HIGHLIGHTS === */
